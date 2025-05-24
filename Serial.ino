@@ -1,3 +1,7 @@
+// Grupo:
+// Rodrigo de Freitas Lima - 12547510
+// Henrique Drago - 14675441
+// Henrique Yukio Sekido - 14614564
 
 #define PINO_RTS 11 // RTS
 #define PINO_RX 12 // Mudei pra 12, tava em 13, CTS
