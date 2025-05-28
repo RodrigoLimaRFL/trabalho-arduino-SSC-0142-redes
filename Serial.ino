@@ -16,6 +16,7 @@ bool bitAtual = false; // bit atual
 int bitsEnviados = 0; // num de bits enviados
 bool paridade = false; // bit de paridade
 bool enviando = false; // flag de envio
+bool novoDado = false;
 
 // Calcula bit de paridade - Par
 bool bitParidade(char dado){
@@ -56,6 +57,7 @@ ISR(TIMER1_COMPA_vect){
     // Reseta variaveis
     bitsEnviados = 0; 
     enviando = false;
+    novoDado = false;
     paraTemporizador();
   }
 }
@@ -87,6 +89,7 @@ void loop () {
     char dado = Serial.read();
     paridade = bitParidade(dado);
     dadoAtual = dado;
+    novoDado = true;
 
     Serial.print("Dado: ");
     Serial.println(dado, BIN);
@@ -101,7 +104,7 @@ void loop () {
     Serial.println("   Enviando RTS como 1");
   }
 
-  if(digitalRead(PINO_RX) == HIGH)
+  if(digitalRead(PINO_RX) == HIGH && novoDado)
   {
     if(!enviando)
     {
